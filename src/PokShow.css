@@ -1,0 +1,12 @@
+.buttonName{
+	background-color: pink ;
+	color: white;
+	width: 100px;
+	border: none;
+	border-radius: 4px;
+	font-size: medium;
+}
+.cardName{
+	width: 500px;
+  margin: 20px;
+}

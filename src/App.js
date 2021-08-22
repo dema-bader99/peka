@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import PokShow from './pokShow'
+export default function App() {
+	const [pokList, setPokList] = useState([]);
+	// const [pokDetails, setMoreInfoFun] = useState([]);
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	useEffect(() => {
+		const urlPok = "https://pokeapi.co/api/v2/pokemon?limit=100";
+		fetch (urlPok)
+		.then(res => res.json())
+		.then (data => {
+			setPokList(data.results);
+		})
+	},[]);
+
+
+		return (
+			<div>
+				<div className="showName">
+				{pokList.map((pokemon, index) => {
+						return(
+							<div>
+							<PokShow id={index} data={pokemon}/>
+							</div>
+						)
+					})}
+
+				</div>
+			</div>
+  		);
+
 }
 
-export default App;
